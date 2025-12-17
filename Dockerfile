@@ -27,3 +27,12 @@ RUN chown -R www-data:www-data /var/www/html && \
 
 # Set Apache to listen on port provided by Render
 RUN echo 'Listen ${PORT}' > /etc/apache2/ports.conf
+
+# ... previous Dockerfile content ...
+
+# Copy and make startup script executable
+COPY start.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/start.sh
+
+# Set the startup command
+CMD ["/usr/local/bin/start.sh"]
